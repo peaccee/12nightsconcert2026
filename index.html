@@ -3,117 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>音樂會訂票系統</title>
+    <title>胡志龍的十二夜 - 票券預訂</title>
     <style>
-        body { font-family: "Microsoft JhengHei", sans-serif; background-color: #f9f9f9; padding: 20px; color: #333; }
-        .container { max-width: 700px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
-        h2 { background: #f8f9fa; padding: 10px; border-left: 5px solid #27ae60; font-size: 1.1em; margin-top: 25px; }
+        body { font-family: "Microsoft JhengHei", sans-serif; background-color: #f4f4f4; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .main-image { width: 100%; border-radius: 10px; margin-bottom: 25px; display: block; height: auto; }
+        h1 { text-align: center; color: #2c3e50; font-size: 1.6em; margin-bottom: 10px; }
+        h2 { background: #f8f9fa; padding: 12px; border-left: 6px solid #b38b5d; font-size: 1.1em; margin-top: 30px; border-radius: 0 4px 4px 0; }
+        .discount-tag { text-align: center; color: #d35400; font-weight: bold; background: #fff5eb; padding: 10px; border-radius: 8px; margin-bottom: 20px; border: 1px dashed #d35400; }
+        
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input[type="text"], input[type="email"], input[type="tel"], select, input[type="number"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
-        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9em; }
-        th, td { border-bottom: 1px solid #eee; padding: 12px 8px; text-align: left; }
-        th { background: #fdfdfd; }
-        .summary-box { background: #2c3e50; color: white; padding: 20px; border-radius: 8px; margin-top: 25px; }
-        .summary-line { display: flex; justify-content: space-between; margin-bottom: 5px; }
-        .total-amount { font-size: 1.4em; color: #f1c40f; border-top: 1px solid #555; pt: 10px; margin-top: 10px; }
-        .bank-info { background: #fff9db; padding: 15px; border-radius: 6px; border: 1px solid #ffec99; margin-top: 10px; font-size: 0.95em; }
-        button { width: 100%; padding: 15px; background: #27ae60; color: white; border: none; border-radius: 6px; font-size: 1.2em; cursor: pointer; margin-top: 20px; transition: 0.3s; }
-        button:hover { background: #219150; }
-        .discount-tag { color: #e67e22; font-weight: bold; font-size: 0.9em; }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #fff; }
+        th { background: #f2f2f2; padding: 12px; text-align: left; border-bottom: 2px solid #ddd; }
+        td { padding: 12px; border-bottom: 1px solid #eee; }
+        .venue-name { font-weight: bold; color: #b38b5d; background: #fdfdfd; border-top: 2px solid #eee; }
+        .price-label { color: #444; font-size: 1em; }
+        .qty { width: 80px !important; text-align: center; font-weight: bold; color: #2c3e50; border: 2px solid #b38b5d !important; border-radius: 4px; }
+
+        .summary-box { background: #2c3e50; color: white; padding: 25px; border-radius: 10px; margin-top: 30px; }
+        .summary-line { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 1.1em; }
+        .total-amount { font-size: 1.6em; color: #f1c40f; border-top: 1px solid #5e6d7d; padding-top: 15px; margin-top: 10px; font-weight: bold; }
+        
+        .bank-info { background: #fdf9e7; padding: 20px; border-radius: 8px; border: 1px solid #e6dbac; margin-top: 15px; }
+        button { width: 100%; padding: 18px; background: #b38b5d; color: white; border: none; border-radius: 8px; font-size: 1.3em; cursor: pointer; margin-top: 25px; font-weight: bold; transition: 0.3s; }
+        button:hover { background: #96724a; }
+        
+        .footer { text-align: center; margin-top: 40px; font-size: 0.9em; color: #7f8c8d; line-height: 1.8; border-top: 1px solid #eee; padding-top: 20px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>胡志龍 2026 鋼琴獨奏會 - 胡志龍的十二夜 票券預訂</h1>
+    <img src="https://www.dropbox.com/scl/fi/zsccax3bcta4thc9m1t8n/612613707_889152326832807_2365934961985775136_n.jpg?rlkey=1wgzarlhc468bn3t0ozl4x94e&st=mbto8m4e&dl=1" alt="胡志龍的十二夜" class="main-image">
     
-    <div style="text-align:center; margin-bottom:20px;" class="discount-tag">
-        🎁 3張8折｜4張75折｜5張以上7折
+    <h1>胡志龍 2026 鋼琴獨奏會 - 胡志龍的十二夜</h1>
+    
+    <div class="discount-tag">
+        🎁 團體購票優惠：3張8折｜4張75折｜5張以上7折 (跨場次累計)
     </div>
 
     <form action="https://formspree.io/f/xeeeoknw" method="POST">
         
-        <h2>👤 訂購人資訊</h2>
+        <h2>👤 購票者資訊</h2>
         <div class="form-group">
             <label>購票者姓名 *</label>
-            <input type="text" name="購票人姓名" required>
+            <input type="text" name="購票者姓名" required placeholder="請輸入姓名">
         </div>
         <div class="form-group">
-            <label>電子信箱 *</label>
-            <input type="email" name="Email" required>
+            <label>電子信箱 Email *</label>
+            <input type="email" name="Email" required placeholder="example@mail.com">
         </div>
         <div class="form-group">
             <label>聯絡電話 *</label>
-            <input type="tel" name="聯絡電話" required>
+            <input type="tel" name="聯絡電話" required placeholder="09xx-xxx-xxx">
         </div>
 
-        <h2>🎼 選擇場次數量</h2>
+        <h2>🎼 選擇訂購場次與張數</h2>
         <table>
             <thead>
                 <tr>
-                    <th>場次與地點</th>
-                    <th>票價 （請下拉選單選擇票價）</th>
-                    <th style="width: 80px;">數量</th>
+                    <th>場次 / 票價選項</th>
+                    <th style="width: 100px; text-align: center;">訂購數量</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>3/13 (五) 臺北演奏廳</td>
-                    <td><select name="場次1_票價" class="p-sel"><option value="500">500</option><option value="800">800</option><option value="1000">1000</option></select></td>
-                    <td><input type="number" name="場次1_數量" class="qty" min="0" value="0"></td>
-                </tr>
-                <tr>
-                    <td>3/22 (日) 臺北演奏廳</td>
-                    <td><select name="場次2_票價" class="p-sel"><option value="500">500</option><option value="800">800</option><option value="1000">1000</option></select></td>
-                    <td><input type="number" name="場次2_數量" class="qty" min="0" value="0"></td>
-                </tr>
-                <tr>
-                    <td>3/29 (日) 14:30 衛武營</td>
-                    <td><select name="場次3_票價" class="p-sel"><option value="400">400</option><option value="600">600</option><option value="1000">1000</option></select></td>
-                    <td><input type="number" name="場次3_數量" class="qty" min="0" value="0"></td>
-                </tr>
-                <tr>
-                    <td>3/29 (日) 19:30 衛武營</td>
-                    <td><select name="場次4_票價" class="p-sel"><option value="400">400</option><option value="600">600</option><option value="1000">1000</option></select></td>
-                    <td><input type="number" name="場次4_數量" class="qty" min="0" value="0"></td>
-                </tr>
-                <tr>
-                    <td>4/11 (六) 宜蘭演藝廳</td>
-                    <td><select name="場次5_票價" class="p-sel"><option value="300">300</option></select></td>
-                    <td><input type="number" name="場次5_數量" class="qty" min="0" value="0"></td>
-                </tr>
-                <tr>
-                    <td>4/12 (日) 14:30 台中歌劇院</td>
-                    <td><select name="場次6_票價" class="p-sel"><option value="600">600</option></select></td>
-                    <td><input type="number" name="場次6_數量" class="qty" min="0" value="0"></td>
-                </tr>
-                <tr>
-                    <td>4/12 (日) 19:30 台中歌劇院</td>
-                    <td><select name="場次7_票價" class="p-sel"><option value="600">600</option></select></td>
-                    <td><input type="number" name="場次7_數量" class="qty" min="0" value="0"></td>
-                </tr>
-                <tr>
-                    <td>4/18 (六) 14:30 台南成杏廳</td>
-                    <td><select name="場次8_票價" class="p-sel"><option value="1000">1000</option></select></td>
-                    <td><input type="number" name="場次8_數量" class="qty" min="0" value="0"></td>
-                </tr>
+                <tr class="venue-name"><td colspan="2">3/13 (五) 19:30 臺北國家演奏廳</td></tr>
+                <tr><td class="price-label">票價一 $500</td><td><input type="number" name="0313_臺北_500" class="qty" min="0" value="0" data-price="500"></td></tr>
+                <tr><td class="price-label">票價二 $800</td><td><input type="number" name="0313_臺北_800" class="qty" min="0" value="0" data-price="800"></td></tr>
+                <tr><td class="price-label">票價三 $1,000</td><td><input type="number" name="0313_臺北_1000" class="qty" min="0" value="0" data-price="1000"></td></tr>
+
+                <tr class="venue-name"><td colspan="2">3/22 (日) 19:30 臺北國家演奏廳</td></tr>
+                <tr><td class="price-label">票價一 $500</td><td><input type="number" name="0322_臺北_500" class="qty" min="0" value="0" data-price="500"></td></tr>
+                <tr><td class="price-label">票價二 $800</td><td><input type="number" name="0322_臺北_800" class="qty" min="0" value="0" data-price="800"></td></tr>
+                <tr><td class="price-label">票價三 $1,000</td><td><input type="number" name="0322_臺北_1000" class="qty" min="0" value="0" data-price="1000"></td></tr>
+
+                <tr class="venue-name"><td colspan="2">3/29 (日) 14:30 衛武營表演廳</td></tr>
+                <tr><td class="price-label">票價一 $400</td><td><input type="number" name="0329午_衛武營_400" class="qty" min="0" value="0" data-price="400"></td></tr>
+                <tr><td class="price-label">票價二 $600</td><td><input type="number" name="0329午_衛武營_600" class="qty" min="0" value="0" data-price="600"></td></tr>
+                <tr><td class="price-label">票價三 $1,000</td><td><input type="number" name="0329午_衛武營_1000" class="qty" min="0" value="0" data-price="1000"></td></tr>
+
+                <tr class="venue-name"><td colspan="2">3/29 (日) 19:30 衛武營表演廳</td></tr>
+                <tr><td class="price-label">票價一 $400</td><td><input type="number" name="0329晚_衛武營_400" class="qty" min="0" value="0" data-price="400"></td></tr>
+                <tr><td class="price-label">票價二 $600</td><td><input type="number" name="0329晚_衛武營_600" class="qty" min="0" value="0" data-price="600"></td></tr>
+                <tr><td class="price-label">票價三 $1,000</td><td><input type="number" name="0329晚_衛武營_1000" class="qty" min="0" value="0" data-price="1000"></td></tr>
+
+                <tr class="venue-name"><td colspan="2">4/11 (六) 15:00 宜蘭演藝廳</td></tr>
+                <tr><td class="price-label">票價 $300</td><td><input type="number" name="0411_宜蘭_300" class="qty" min="0" value="0" data-price="300"></td></tr>
+
+                <tr class="venue-name"><td colspan="2">4/12 (日) 14:30 臺中國家歌劇院小劇場</td></tr>
+                <tr><td class="price-label">票價 $600</td><td><input type="number" name="0412午_臺中_600" class="qty" min="0" value="0" data-price="600"></td></tr>
+
+                <tr class="venue-name"><td colspan="2">4/12 (日) 19:30 臺中國家歌劇院小劇場</td></tr>
+                <tr><td class="price-label">票價 $600</td><td><input type="number" name="0412晚_臺中_600" class="qty" min="0" value="0" data-price="600"></td></tr>
+
+                <tr class="venue-name"><td colspan="2">4/18 (六) 14:30 臺南成功大學 成杏廳</td></tr>
+                <tr><td class="price-label">票價 $1,000</td><td><input type="number" name="0418_臺南_1000" class="qty" min="0" value="0" data-price="1000"></td></tr>
             </tbody>
         </table>
 
-        <h2>💰 付款方式</h2>
+        <h2>💰 付款與取票</h2>
         <div class="form-group">
-            <input type="radio" name="付款方式" value="ATM轉帳" id="pay1" checked onclick="toggleBank(true)"> <label style="display:inline" for="pay1">ATM 轉帳，現場取票</label><br>
-            <input type="radio" name="付款方式" value="現場付款" id="pay2" onclick="toggleBank(false)"> <label style="display:inline" for="pay2">現場付款取票</label>
+            <label>選擇付款方式</label>
+            <input type="radio" name="付款方式" value="ATM轉帳" id="pay1" checked onclick="toggleBank(true)"> <label style="display:inline; font-weight:normal;" for="pay1">1. ATM 轉帳，現場取票</label><br>
+            <input type="radio" name="付款方式" value="現場付款" id="pay2" onclick="toggleBank(false)"> <label style="display:inline; font-weight:normal;" for="pay2">2. 現場付款取票</label>
         </div>
 
         <div id="bankSection" class="bank-info">
-            <strong>匯款帳號：</strong> oo銀行 (代碼: xxx) <br>
-            <strong>帳號：</strong> oooo-oooo-oooo <br>
-            <strong>戶名：</strong> ooo <br><br>
-            <label>轉帳後五碼 (若選ATM請填寫)</label>
-            <input type="text" name="匯款後五碼" maxlength="5">
+            <strong>匯款資訊：</strong><br>
+            銀行：oo銀行 oo分行 (代碼: xxx)<br>
+            戶名：ooo<br>
+            帳戶：oooo-oooo-oooo<br><br>
+            <label>提供付款後五碼 (選擇轉帳者必填)</label>
+            <input type="text" name="匯款後五碼" maxlength="5" placeholder="12345">
         </div>
 
         <div class="form-group" style="margin-top:20px;">
@@ -121,31 +125,41 @@
             <input type="text" name="取票者姓名" placeholder="若與購票者相同可不填">
         </div>
 
+        <div class="form-group">
+            <label>備註</label>
+            <textarea name="備註" rows="3" placeholder="如有其他需求請在此填寫"></textarea>
+        </div>
+
         <div class="summary-box">
             <div class="summary-line"><span>總票數：</span><span><span id="dispQty">0</span> 張</span></div>
             <div class="summary-line"><span>原始總額：</span><span>$<span id="dispOrig">0</span></span></div>
-            <div class="summary-line total-amount"><span>應付總額：</span><span>$<span id="dispFinal">0</span></span></div>
+            <div class="summary-line total-amount"><span>應付總額 (已計折扣)：</span><span>$<span id="dispFinal">0</span></span></div>
         </div>
 
-        <input type="hidden" name="[最終統計] 總票數" id="hideQty">
-        <input type="hidden" name="[最終統計] 應付金額" id="hideFinal">
-
-        <button type="submit">確認送出訂票單</button>
+        <input type="hidden" name="[統計] 總票數" id="hideQty">
+        <input type="hidden" name="[統計] 應付總金額" id="hideFinal">
         <input type="hidden" name="_next" value="https://peaccee.github.io/TwelveNightsConcert-tickets/">
+
+        <button type="submit">確認提交訂購單</button>
     </form>
+
+    <div class="footer">
+        主辦：斐亞文化藝術股份有限公司<br>
+        聯絡電話：02-27711270<br>
+        電子郵件：chorphilia@gmail.com
+    </div>
 </div>
 
 <script>
     const qties = document.querySelectorAll('.qty');
-    const prices = document.querySelectorAll('.p-sel');
 
     function calc() {
         let totalQty = 0;
         let originalPrice = 0;
 
-        qties.forEach((q, i) => {
+        qties.forEach((q) => {
             let n = parseInt(q.value) || 0;
-            let p = parseInt(prices[i].value);
+            let p = parseInt(q.getAttribute('data-price'));
             totalQty += n;
             originalPrice += (n * p);
         });
@@ -161,7 +175,6 @@
         document.getElementById('dispOrig').innerText = originalPrice.toLocaleString();
         document.getElementById('dispFinal').innerText = final.toLocaleString();
         
-        // 更新隱藏欄位
         document.getElementById('hideQty').value = totalQty + " 張";
         document.getElementById('hideFinal').value = "$" + final.toLocaleString();
     }
@@ -171,7 +184,6 @@
     }
 
     qties.forEach(el => el.addEventListener('input', calc));
-    prices.forEach(el => el.addEventListener('change', calc));
 </script>
 
 </body>
