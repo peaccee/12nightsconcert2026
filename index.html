@@ -18,7 +18,8 @@
         table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #fff; }
         td { padding: 12px; border-bottom: 1px solid #eee; }
         .venue-name { font-weight: bold; color: #b38b5d; background: #fdfdfd; border-top: 2px solid #eee; }
-        .qty-select { width: 100px !important; cursor: pointer; border: 2px solid #b38b5d !important; }
+        .free-entry { color: #27ae60; font-weight: bold; font-size: 0.9em; }
+        .note-text { font-size: 0.85em; color: #7f8c8d; margin-top: 4px; display: block; line-height: 1.4; }
 
         .summary-box { background: #2c3e50; color: white; padding: 25px; border-radius: 10px; margin-top: 30px; }
         .summary-line { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 1.1em; }
@@ -30,10 +31,8 @@
         
         .footer { text-align: center; margin-top: 40px; font-size: 0.9em; color: #7f8c8d; line-height: 1.8; border-top: 1px solid #eee; padding-top: 20px; }
 
-        /* 成功頁面樣式 */
         #success-message { display: none; text-align: center; padding: 50px 20px; }
         #success-message h3 { color: #2c3e50; font-size: 1.5em; margin-bottom: 20px; }
-        #success-message p { line-height: 1.6; margin-bottom: 30px; }
     </style>
 </head>
 <body>
@@ -42,7 +41,7 @@
     <h1>胡志龍 2026 鋼琴獨奏會 - 胡志龍的十二夜</h1>
     
     <div class="discount-tag">
-         購票優惠：3張8折｜4張75折｜5張以上7折 (跨場次累計)
+        🎁 團體購票優惠：3張8折｜4張75折｜5張以上7折 (跨售票場次累計)
     </div>
 
     <form id="ticketForm" action="https://formspree.io/f/xeeeoknw" method="POST">
@@ -57,44 +56,61 @@
             <input type="email" name="Email" required>
         </div>
         <div class="form-group">
-            <label>聯絡電話 * (請填入10碼半形數字)</label>
-            <input type="tel" name="聯絡電話" required pattern="[0-9]{10}">
+            <label>聯絡電話 * (10碼數字)</label>
+            <input type="tel" name="聯絡電話" required pattern="[0-9]{10}" title="請輸入10碼數字">
         </div>
 
         <h2>🎼 選擇訂購場次與張數</h2>
         <table>
             <tbody>
-                <tr class="venue-name"><td colspan="2">3/13 (五) 19:30 臺北國家演奏廳 莫札特 Mozart</td></tr>
-                <tr><td>票價一 $500</td><td style="text-align:right"><select name="0313_臺北_500" class="qty" data-price="500"></select></td></tr>
-                <tr><td>票價二 $800</td><td style="text-align:right"><select name="0313_臺北_800" class="qty" data-price="800"></select></td></tr>
-                <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0313_臺北_1000" class="qty" data-price="1000"></select></td></tr>
+                <tr class="venue-name"><td colspan="2">一、巴赫 Bach 3/11 (三) 19:00 臺北和平基督長老教會</td></tr>
+                <tr><td colspan="2" class="free-entry">自由入場</td></tr>
 
-                <tr class="venue-name"><td colspan="2">3/22 (日) 19:30 臺北國家演奏廳 舒伯特 Schubert</td></tr>
-                <tr><td>票價一 $500</td><td style="text-align:right"><select name="0322_臺北_500" class="qty" data-price="500"></select></td></tr>
-                <tr><td>票價二 $800</td><td style="text-align:right"><select name="0322_臺北_800" class="qty" data-price="800"></select></td></tr>
-                <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0322_臺北_1000" class="qty" data-price="1000"></select></td></tr>
+                <tr class="venue-name"><td colspan="2">二、莫札特 Mozart 3/13 (五) 19:30 臺北國家演奏廳</td></tr>
+                <tr><td>票價一 $500</td><td style="text-align:right"><select name="0313_台北_500" class="qty" data-price="500"></select></td></tr>
+                <tr><td>票價二 $800</td><td style="text-align:right"><select name="0313_台北_800" class="qty" data-price="800"></select></td></tr>
+                <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0313_台北_1000" class="qty" data-price="1000"></select></td></tr>
 
-                <tr class="venue-name"><td colspan="2">3/29 (日) 14:30 衛武營表演廳  蕭邦 Chopin</td></tr>
+                <tr class="venue-name"><td colspan="2">三、貝多芬 Beethoven 3/15 (日) 15:00 北港基督長老教會</td></tr>
+                <tr><td colspan="2" class="free-entry">自由入場</td></tr>
+
+                <tr class="venue-name"><td colspan="2">四、舒伯特 Schubert 3/22 (日) 19:30 臺北國家演奏廳</td></tr>
+                <tr><td>票價一 $500</td><td style="text-align:right"><select name="0322_台北_500" class="qty" data-price="500"></select></td></tr>
+                <tr><td>票價二 $800</td><td style="text-align:right"><select name="0322_台北_800" class="qty" data-price="800"></select></td></tr>
+                <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0322_台北_1000" class="qty" data-price="1000"></select></td></tr>
+
+                <tr class="venue-name"><td colspan="2">五、舒曼 Schumann 3/25 (三) 19:00 國立嘉義大學 文薈廳</td></tr>
+                <tr><td colspan="2" class="free-entry">自由入場</td></tr>
+
+                <tr class="venue-name"><td colspan="2">六、蕭邦 Chopin 3/29 (日) 14:30 衛武營表演廳</td></tr>
                 <tr><td>票價一 $400</td><td style="text-align:right"><select name="0329午_衛武營_400" class="qty" data-price="400"></select></td></tr>
                 <tr><td>票價二 $600</td><td style="text-align:right"><select name="0329午_衛武營_600" class="qty" data-price="600"></select></td></tr>
                 <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0329午_衛武營_1000" class="qty" data-price="1000"></select></td></tr>
 
-                <tr class="venue-name"><td colspan="2">3/29 (日) 19:30 衛武營表演廳 李斯特 Liszt</td></tr>
+                <tr class="venue-name"><td colspan="2">七、李斯特 Liszt 3/29 (日) 19:30 衛武營表演廳</td></tr>
                 <tr><td>票價一 $400</td><td style="text-align:right"><select name="0329晚_衛武營_400" class="qty" data-price="400"></select></td></tr>
                 <tr><td>票價二 $600</td><td style="text-align:right"><select name="0329晚_衛武營_600" class="qty" data-price="600"></select></td></tr>
                 <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0329晚_衛武營_1000" class="qty" data-price="1000"></select></td></tr>
 
-                <tr class="venue-name"><td colspan="2">4/11 (六) 15:00 宜蘭演藝廳 德布西 Debussy</td></tr>
+                <tr class="venue-name"><td colspan="2">八、布拉姆斯 Brahms 4/9 (四) 19:00 花蓮門諾醫院 薄柔纜禮拜堂</td></tr>
+                <tr><td colspan="2" class="free-entry">自由入場</td></tr>
+
+                <tr class="venue-name"><td colspan="2">九、德布西 Debussy 4/11 (六) 15:00 宜蘭演藝廳</td></tr>
                 <tr><td>票價 $300</td><td style="text-align:right"><select name="0411_宜蘭_300" class="qty" data-price="300"></select></td></tr>
 
-                <tr class="venue-name"><td colspan="2">4/12 (日) 14:30 臺中國家歌劇院小劇場 拉威爾 Ravel</td></tr>
-                <tr><td>票價 $600</td><td style="text-align:right"><select name="0412午_臺中_600" class="qty" data-price="600"></select></td></tr>
+                <tr class="venue-name"><td colspan="2">十、拉威爾 Ravel 4/12 (日) 14:30 臺中國家歌劇院小劇場</td></tr>
+                <tr><td>票價 $600</td><td style="text-align:right"><select name="0412午_台中_600" class="qty" data-price="600"></select></td></tr>
 
-                <tr class="venue-name"><td colspan="2">4/12 (日) 19:30 臺中國家歌劇院小劇場 拉赫瑪尼諾夫 Rachmaninoff</td></tr>
-                <tr><td>票價 $600</td><td style="text-align:right"><select name="0412晚_臺中_600" class="qty" data-price="600"></select></td></tr>
+                <tr class="venue-name"><td colspan="2">十一、拉赫瑪尼諾夫 Rachmaninoff 4/12 (日) 19:30 臺中國家歌劇院小劇場</td></tr>
+                <tr><td>票價 $600</td><td style="text-align:right"><select name="0412晚_台中_600" class="qty" data-price="600"></select></td></tr>
 
-                <tr class="venue-name"><td colspan="2">4/18 (六) 14:30 臺南成功大學 成杏廳 蓋希文 Gershwin </td></tr>
-                <tr><td>票價 $1,000</td><td style="text-align:right"><select name="0418_臺南_1000" class="qty" data-price="1000"></select></td></tr>
+                <tr class="venue-name">
+                    <td colspan="2">
+                        十二、蓋希文Gershwin 4/18 (六) 14:30 臺南成功大學 成杏廳
+                        <span class="note-text">共同演出 / 廖培鈞<br>本場次為國立成功大學國際傷口修復與再生中心主辦之慈善音樂會</span>
+                    </td>
+                </tr>
+                <tr><td>票價 $1,000</td><td style="text-align:right"><select name="0418_台南_1000" class="qty" data-price="1000"></select></td></tr>
             </tbody>
         </table>
 
@@ -125,7 +141,7 @@
         </div>
 
         <div class="summary-box">
-            <div class="summary-line"><span>總票數：</span><span><span id="dispQty">0</span></span></div>
+            <div class="summary-line"><span>售票場次總票數：</span><span><span id="dispQty">0</span></span></div>
             <div class="summary-line"><span>原始總額：</span><span>$<span id="dispOrig">0</span></span></div>
             <div class="summary-line total-amount"><span>應付總額 (已計折扣)：</span><span>$<span id="dispFinal">0</span></span></div>
         </div>
@@ -152,7 +168,6 @@
 <script>
     const qties = document.querySelectorAll('.qty');
 
-    // 產生 0~20 的純數字選項
     qties.forEach(select => {
         for (let i = 0; i <= 20; i++) {
             let opt = document.createElement('option');
@@ -194,7 +209,6 @@
 
     qties.forEach(el => el.addEventListener('change', calc));
 
-    // 處理表單非跳轉送出
     const form = document.getElementById('ticketForm');
     form.addEventListener('submit', function(e) {
         e.preventDefault();
