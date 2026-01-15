@@ -19,12 +19,11 @@
         table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #fff; }
         td { padding: 12px; border-bottom: 1px solid #eee; }
         
-        /* 售票場次標題樣式 */
+        /* 統一場次標題樣式 */
         .venue-name { font-weight: bold; color: #b38b5d; background: #fdfdfd; border-top: 2px solid #eee; }
         
-        /* 自由入場場次樣式 (灰字) */
-        .free-entry-row { background: #fafafa; color: #999 !important; border-top: 1px solid #eee; }
-        .free-entry-text { color: #aaa; font-size: 0.9em; font-weight: normal; }
+        /* 僅針對自由入場說明文字變灰 */
+        .free-entry-label { color: #999; font-weight: normal; font-size: 0.95em; }
 
         .note-text { font-size: 0.85em; color: #7f8c8d; margin-top: 4px; display: block; line-height: 1.4; }
 
@@ -48,12 +47,12 @@
     <h1>胡志龍 2026 鋼琴獨奏會 - 胡志龍的十二夜</h1>
     
     <div class="discount-tag">
-         購票優惠：3張8折｜4張75折｜5張以上7折 (跨售票場次累計)
+        🎁 團體購票優惠：3張8折｜4張75折｜5張以上7折 (跨售票場次累計)
     </div>
 
     <form id="ticketForm" action="https://formspree.io/f/xeeeoknw" method="POST">
         
-        <h2>購票者資訊</h2>
+        <h2>👤 購票者資訊</h2>
         <div class="form-group">
             <label>購票者姓名 *</label>
             <input type="text" name="購票者姓名" required>
@@ -67,30 +66,27 @@
             <input type="tel" name="聯絡電話" required pattern="[0-9]{10}" title="請輸入10碼數字">
         </div>
 
-        <h2>選擇訂購場次與張數</h2>
+        <h2>🎼 選擇訂購場次與張數</h2>
         <table>
             <tbody>
-                <tr class="free-entry-row">
-                    <td colspan="2">一、巴赫 Bach 3/11 (三) 19:00 臺北和平基督長老教會<br><span class="free-entry-text">自由入場，不需購票</span></td>
-                </tr>
+                <tr class="venue-name"><td colspan="2">一、巴赫 Bach 3/11 (三) 19:00 臺北和平基督長老教會</td></tr>
+                <tr><td colspan="2" class="free-entry-label">自由入場，不需購票</td></tr>
 
                 <tr class="venue-name"><td colspan="2">二、莫札特 Mozart 3/13 (五) 19:30 臺北國家演奏廳</td></tr>
                 <tr><td>票價一 $500</td><td style="text-align:right"><select name="0313_台北_500" class="qty" data-price="500"></select></td></tr>
                 <tr><td>票價二 $800</td><td style="text-align:right"><select name="0313_台北_800" class="qty" data-price="800"></select></td></tr>
                 <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0313_台北_1000" class="qty" data-price="1000"></select></td></tr>
 
-                <tr class="free-entry-row">
-                    <td colspan="2">三、貝多芬 Beethoven 3/15 (日) 15:00 北港基督長老教會<br><span class="free-entry-text">自由入場，不需購票</span></td>
-                </tr>
+                <tr class="venue-name"><td colspan="2">三、貝多芬 Beethoven 3/15 (日) 15:00 北港基督長老教會</td></tr>
+                <tr><td colspan="2" class="free-entry-label">自由入場，不需購票</td></tr>
 
                 <tr class="venue-name"><td colspan="2">四、舒伯特 Schubert 3/22 (日) 19:30 臺北國家演奏廳</td></tr>
                 <tr><td>票價一 $500</td><td style="text-align:right"><select name="0322_台北_500" class="qty" data-price="500"></select></td></tr>
                 <tr><td>票價二 $800</td><td style="text-align:right"><select name="0322_台北_800" class="qty" data-price="800"></select></td></tr>
                 <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0322_台北_1000" class="qty" data-price="1000"></select></td></tr>
 
-                <tr class="free-entry-row">
-                    <td colspan="2">五、舒曼 Schumann 3/25 (三) 19:00 國立嘉義大學 文薈廳<br><span class="free-entry-text">自由入場，不需購票</span></td>
-                </tr>
+                <tr class="venue-name"><td colspan="2">五、舒曼 Schumann 3/25 (三) 19:00 國立嘉義大學 文薈廳</td></tr>
+                <tr><td colspan="2" class="free-entry-label">自由入場，不需購票</td></tr>
 
                 <tr class="venue-name"><td colspan="2">六、蕭邦 Chopin 3/29 (日) 14:30 衛武營表演廳</td></tr>
                 <tr><td>票價一 $400</td><td style="text-align:right"><select name="0329午_衛武營_400" class="qty" data-price="400"></select></td></tr>
@@ -102,9 +98,8 @@
                 <tr><td>票價二 $600</td><td style="text-align:right"><select name="0329晚_衛武營_600" class="qty" data-price="600"></select></td></tr>
                 <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0329晚_衛武營_1000" class="qty" data-price="1000"></select></td></tr>
 
-                <tr class="free-entry-row">
-                    <td colspan="2">八、布拉姆斯 Brahms 4/9 (四) 19:00 花蓮門諾醫院 薄柔纜禮拜堂<br><span class="free-entry-text">自由入場，不需購票</span></td>
-                </tr>
+                <tr class="venue-name"><td colspan="2">八、布拉姆斯 Brahms 4/9 (四) 19:00 花蓮門諾醫院 薄柔纜禮拜堂</td></tr>
+                <tr><td colspan="2" class="free-entry-label">自由入場，不需購票</td></tr>
 
                 <tr class="venue-name"><td colspan="2">九、德布西 Debussy 4/11 (六) 15:00 宜蘭演藝廳</td></tr>
                 <tr><td>票價 $300</td><td style="text-align:right"><select name="0411_宜蘭_300" class="qty" data-price="300"></select></td></tr>
@@ -125,7 +120,7 @@
             </tbody>
         </table>
 
-        <h2>付款與取票</h2>
+        <h2>💰 付款與取票</h2>
         <div class="form-group">
             <label>選擇付款方式</label>
             <input type="radio" name="付款方式" value="ATM轉帳" id="pay1" checked onclick="toggleBank(true)"> <label style="display:inline; font-weight:normal;" for="pay1">1. ATM 轉帳，現場取票</label><br>
@@ -137,7 +132,7 @@
             銀行：oo銀行 oo分行 (代碼: xxx)<br>
             戶名：ooo<br>
             帳戶：oooo-oooo-oooo<br><br>
-            <label>提供付款後五碼 (選擇匯款者必填)</label>
+            <label>提供付款後五碼 (選擇轉帳者必填)</label>
             <input type="text" name="匯款後五碼" maxlength="5">
         </div>
 
