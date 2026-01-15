@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音樂會訂票系統</title>
+    <style>
+        body { font-family: "Microsoft JhengHei", sans-serif; background-color: #f9f9f9; padding: 20px; color: #333; }
+        .container { max-width: 700px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+        h2 { background: #f8f9fa; padding: 10px; border-left: 5px solid #27ae60; font-size: 1.1em; margin-top: 25px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="email"], input[type="tel"], select, input[type="number"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9em; }
+        th, td { border-bottom: 1px solid #eee; padding: 12px 8px; text-align: left; }
+        th { background: #fdfdfd; }
+        .summary-box { background: #2c3e50; color: white; padding: 20px; border-radius: 8px; margin-top: 25px; }
+        .summary-line { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        .total-amount { font-size: 1.4em; color: #f1c40f; border-top: 1px solid #555; pt: 10px; margin-top: 10px; }
+        .bank-info { background: #fff9db; padding: 15px; border-radius: 6px; border: 1px solid #ffec99; margin-top: 10px; font-size: 0.95em; }
+        button { width: 100%; padding: 15px; background: #27ae60; color: white; border: none; border-radius: 6px; font-size: 1.2em; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        button:hover { background: #219150; }
+        .discount-tag { color: #e67e22; font-weight: bold; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>胡志龍 2026 鋼琴獨奏會 - 胡志龍的十二夜 票券預訂</h1>
+    
+    <div style="text-align:center; margin-bottom:20px;" class="discount-tag">
+        🎁 3張8折｜4張75折｜5張以上7折
+    </div>
+
+    <form action="https://formspree.io/f/peaccee@gmail.com" method="POST">
+        
+        <h2>👤 訂購人資訊</h2>
+        <div class="form-group">
+            <label>購票者姓名 *</label>
+            <input type="text" name="購票人姓名" required>
+        </div>
+        <div class="form-group">
+            <label>電子信箱 *</label>
+            <input type="email" name="Email" required>
+        </div>
+        <div class="form-group">
+            <label>聯絡電話 *</label>
+            <input type="tel" name="聯絡電話" required>
+        </div>
+
+        <h2>🎼 選擇場次數量</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>場次與地點</th>
+                    <th>票價 （請下拉選單選擇票價）</th>
+                    <th style="width: 80px;">數量</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>3/13 (五) 臺北演奏廳</td>
+                    <td><select name="場次1_票價" class="p-sel"><option value="500">500</option><option value="800">800</option><option value="1000">1000</option></select></td>
+                    <td><input type="number" name="場次1_數量" class="qty" min="0" value="0"></td>
+                </tr>
+                <tr>
+                    <td>3/22 (日) 臺北演奏廳</td>
+                    <td><select name="場次2_票價" class="p-sel"><option value="500">500</option><option value="800">800</option><option value="1000">1000</option></select></td>
+                    <td><input type="number" name="場次2_數量" class="qty" min="0" value="0"></td>
+                </tr>
+                <tr>
+                    <td>3/29 (日) 14:30 衛武營</td>
+                    <td><select name="場次3_票價" class="p-sel"><option value="400">400</option><option value="600">600</option><option value="1000">1000</option></select></td>
+                    <td><input type="number" name="場次3_數量" class="qty" min="0" value="0"></td>
+                </tr>
+                <tr>
+                    <td>3/29 (日) 19:30 衛武營</td>
+                    <td><select name="場次4_票價" class="p-sel"><option value="400">400</option><option value="600">600</option><option value="1000">1000</option></select></td>
+                    <td><input type="number" name="場次4_數量" class="qty" min="0" value="0"></td>
+                </tr>
+                <tr>
+                    <td>4/11 (六) 宜蘭演藝廳</td>
+                    <td><select name="場次5_票價" class="p-sel"><option value="300">300</option></select></td>
+                    <td><input type="number" name="場次5_數量" class="qty" min="0" value="0"></td>
+                </tr>
+                <tr>
+                    <td>4/12 (日) 14:30 台中歌劇院</td>
+                    <td><select name="場次6_票價" class="p-sel"><option value="600">600</option></select></td>
+                    <td><input type="number" name="場次6_數量" class="qty" min="0" value="0"></td>
+                </tr>
+                <tr>
+                    <td>4/12 (日) 19:30 台中歌劇院</td>
+                    <td><select name="場次7_票價" class="p-sel"><option value="600">600</option></select></td>
+                    <td><input type="number" name="場次7_數量" class="qty" min="0" value="0"></td>
+                </tr>
+                <tr>
+                    <td>4/18 (六) 14:30 台南成杏廳</td>
+                    <td><select name="場次8_票價" class="p-sel"><option value="1000">1000</option></select></td>
+                    <td><input type="number" name="場次8_數量" class="qty" min="0" value="0"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>💰 付款方式</h2>
+        <div class="form-group">
+            <input type="radio" name="付款方式" value="ATM轉帳" id="pay1" checked onclick="toggleBank(true)"> <label style="display:inline" for="pay1">ATM 轉帳，現場取票</label><br>
+            <input type="radio" name="付款方式" value="現場付款" id="pay2" onclick="toggleBank(false)"> <label style="display:inline" for="pay2">現場付款取票</label>
+        </div>
+
+        <div id="bankSection" class="bank-info">
+            <strong>匯款帳號：</strong> oo銀行 (代碼: xxx) <br>
+            <strong>帳號：</strong> oooo-oooo-oooo <br>
+            <strong>戶名：</strong> ooo <br><br>
+            <label>轉帳後五碼 (若選ATM請填寫)</label>
+            <input type="text" name="匯款後五碼" maxlength="5">
+        </div>
+
+        <div class="form-group" style="margin-top:20px;">
+            <label>取票者姓名</label>
+            <input type="text" name="取票者姓名" placeholder="若與購票者相同可不填">
+        </div>
+
+        <div class="summary-box">
+            <div class="summary-line"><span>總票數：</span><span><span id="dispQty">0</span> 張</span></div>
+            <div class="summary-line"><span>原始總額：</span><span>$<span id="dispOrig">0</span></span></div>
+            <div class="summary-line total-amount"><span>應付總額：</span><span>$<span id="dispFinal">0</span></span></div>
+        </div>
+
+        <input type="hidden" name="[最終統計] 總票數" id="hideQty">
+        <input type="hidden" name="[最終統計] 應付金額" id="hideFinal">
+
+        <button type="submit">確認送出訂票單</button>
+    </form>
+</div>
+
+<script>
+    const qties = document.querySelectorAll('.qty');
+    const prices = document.querySelectorAll('.p-sel');
+
+    function calc() {
+        let totalQty = 0;
+        let originalPrice = 0;
+
+        qties.forEach((q, i) => {
+            let n = parseInt(q.value) || 0;
+            let p = parseInt(prices[i].value);
+            totalQty += n;
+            originalPrice += (n * p);
+        });
+
+        let rate = 1;
+        if (totalQty >= 5) rate = 0.7;
+        else if (totalQty === 4) rate = 0.75;
+        else if (totalQty === 3) rate = 0.8;
+
+        let final = Math.round(originalPrice * rate);
+
+        document.getElementById('dispQty').innerText = totalQty;
+        document.getElementById('dispOrig').innerText = originalPrice.toLocaleString();
+        document.getElementById('dispFinal').innerText = final.toLocaleString();
+        
+        // 更新隱藏欄位
+        document.getElementById('hideQty').value = totalQty + " 張";
+        document.getElementById('hideFinal').value = "$" + final.toLocaleString();
+    }
+
+    function toggleBank(show) {
+        document.getElementById('bankSection').style.display = show ? 'block' : 'none';
+    }
+
+    qties.forEach(el => el.addEventListener('input', calc));
+    prices.forEach(el => el.addEventListener('change', calc));
+</script>
+
+</body>
+</html>
