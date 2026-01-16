@@ -5,40 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>胡志龍的十二夜 - 票券預訂</title>
     <style>
-        body { font-family: "Microsoft JhengHei", sans-serif; background-color: #f4f4f4; padding: 20px; color: #333; line-height: 1.6; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #2c3e50; font-size: 1.8em; margin-bottom: 10px; margin-top: 20px; }
-        h2 { background: #f8f9fa; padding: 12px; border-left: 6px solid #b38b5d; font-size: 1.1em; margin-top: 30px; border-radius: 0 4px 4px 0; }
+        /* 藍色系風格定義 */
+        :root {
+            --primary-blue: #1a3a5a;    /* 深藍色：標題、重要區塊 */
+            --secondary-blue: #3498db;  /* 亮藍色：邊框、按鈕 */
+            --light-blue: #eef6fc;      /* 極淺藍：背景、標題列 */
+            --accent-blue: #2980b9;     /* 中藍色：懸停效果 */
+            --text-color: #2c3e50;      /* 深藍灰：文字 */
+        }
+
+        body { font-family: "Microsoft JhengHei", sans-serif; background-color: #f0f4f8; padding: 20px; color: var(--text-color); line-height: 1.6; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(26,58,90,0.1); }
         
-        .discount-tag { text-align: center; color: #d35400; font-weight: bold; background: #fff5eb; padding: 10px; border-radius: 8px; margin-bottom: 20px; border: 1px dashed #d35400; }
+        h1 { text-align: center; color: var(--primary-blue); font-size: 1.8em; margin-bottom: 10px; margin-top: 20px; }
+        h2 { background: var(--light-blue); padding: 12px; border-left: 6px solid var(--secondary-blue); font-size: 1.1em; margin-top: 30px; border-radius: 0 4px 4px 0; color: var(--primary-blue); }
         
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input[type="text"], input[type="email"], input[type="tel"], select, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; background-color: white; }
+        .discount-tag { text-align: center; color: #0056b3; font-weight: bold; background: #e7f1ff; padding: 12px; border-radius: 8px; margin-bottom: 25px; border: 1px dashed var(--secondary-blue); }
+        
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-blue); }
+        input[type="text"], input[type="email"], input[type="tel"], select, textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; font-size: 16px; background-color: white; transition: border-color 0.3s; }
+        input:focus, select:focus { border-color: var(--secondary-blue); outline: none; box-shadow: 0 0 0 3px rgba(52,152,219,0.1); }
         
         table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #fff; }
-        td { padding: 12px; border-bottom: 1px solid #eee; }
+        td { padding: 12px; border-bottom: 1px solid #edf2f7; }
         
-        .venue-name { font-weight: bold; color: #b38b5d; background: #fdfdfd; border-top: 2px solid #eee; }
-        .free-entry-label { color: #999; font-weight: normal; font-size: 0.95em; }
-        .note-text { font-size: 0.85em; color: #7f8c8d; margin-top: 4px; display: block; line-height: 1.4; }
+        .venue-name { font-weight: bold; color: var(--primary-blue); background: #f8fafc; border-top: 2px solid #e2e8f0; }
+        .free-entry-label { color: #718096; font-weight: normal; font-size: 0.95em; }
+        .note-text { font-size: 0.85em; color: #4a5568; margin-top: 4px; display: block; line-height: 1.4; }
 
-        .summary-box { background: #2c3e50; color: white; padding: 25px; border-radius: 10px; margin-top: 30px; }
+        /* 總計區塊改為深藍漸層 */
+        .summary-box { background: linear-gradient(135deg, #1a3a5a 0%, #2c3e50 100%); color: white; padding: 25px; border-radius: 12px; margin-top: 30px; }
         .summary-line { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 1.1em; }
-        .total-amount { font-size: 1.6em; color: #f1c40f; border-top: 1px solid #5e6d7d; padding-top: 15px; margin-top: 10px; font-weight: bold; }
+        .total-amount { font-size: 1.6em; color: #ffd700; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; margin-top: 10px; font-weight: bold; }
         
-        .bank-info { background: #fdf9e7; padding: 20px; border-radius: 8px; border: 1px solid #e6dbac; margin-top: 15px; }
-        .submit-btn { width: 100%; padding: 18px; background: #b38b5d; color: white; border: none; border-radius: 8px; font-size: 1.3em; cursor: pointer; margin-top: 25px; font-weight: bold; transition: 0.3s; }
-        .submit-btn:hover { background: #96724a; }
-        .secondary-btn { background: #bdc3c7; color: #333; margin-top: 10px; font-size: 1em; padding: 10px; }
+        .bank-info { background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #bcd7f3; margin-top: 15px; }
+        
+        /* 按鈕風格 */
+        .submit-btn { width: 100%; padding: 18px; background: var(--secondary-blue); color: white; border: none; border-radius: 8px; font-size: 1.2em; cursor: pointer; margin-top: 25px; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); }
+        .submit-btn:hover { background: var(--accent-blue); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4); }
+        .secondary-btn { background: #e2e8f0; color: #4a5568; margin-top: 10px; font-size: 1em; padding: 10px; box-shadow: none; }
+        .secondary-btn:hover { background: #cbd5e0; transform: none; }
         
         #confirm-container, #success-message { display: none; }
-        .order-summary-list { text-align: left; background: #fff; padding: 20px; border: 2px solid #eee; border-radius: 8px; margin: 20px 0; }
-        .order-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f9f9f9; align-items: flex-start; }
-        .order-venue-title { font-weight: bold; color: #2c3e50; margin-top: 15px; display: block; border-left: 3px solid #b38b5d; padding-left: 8px; }
-        .order-sub-item { display: flex; justify-content: space-between; padding: 4px 0 4px 15px; font-size: 0.95em; color: #555; }
+        .order-summary-list { text-align: left; background: #fff; padding: 20px; border: 2px solid var(--light-blue); border-radius: 8px; margin: 20px 0; }
+        .order-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f7fafc; align-items: flex-start; }
+        .order-venue-title { font-weight: bold; color: var(--primary-blue); margin-top: 15px; display: block; border-left: 3px solid var(--secondary-blue); padding-left: 8px; }
+        .order-sub-item { display: flex; justify-content: space-between; padding: 4px 0 4px 15px; font-size: 0.95em; color: #4a5568; }
 
-        .footer { text-align: center; margin-top: 40px; font-size: 0.9em; color: #7f8c8d; line-height: 1.8; border-top: 1px solid #eee; padding-top: 20px; }
+        .footer { text-align: center; margin-top: 40px; font-size: 0.9em; color: #718096; line-height: 1.8; border-top: 1px solid #e2e8f0; padding-top: 20px; }
     </style>
 </head>
 <body>
@@ -138,16 +153,16 @@
 </div>
 
 <div class="container" id="confirm-container">
-    <h2 style="text-align:center; border:none; background:none; font-size:1.5em; color:#d35400;">請最後確認您的訂購資訊</h2>
+    <h2 style="text-align:center; border:none; background:none; font-size:1.5em; color:var(--secondary-blue);">請最後確認您的訂購資訊</h2>
     <div class="order-summary-list" id="confirm-details"></div>
     <button type="button" class="submit-btn" id="finalSubmitBtn" onclick="finalSubmit()">確認無誤，正式送出</button>
     <button type="button" class="submit-btn secondary-btn" onclick="backToEdit()">回上一步修改</button>
 </div>
 
 <div class="container" id="success-message" style="text-align: center;">
-    <h3 style="color: #2c3e50; font-size: 1.5em; margin-bottom: 20px;">您已成功登記 胡志龍的十二夜 票券</h3>
+    <h3 style="color: var(--primary-blue); font-size: 1.5em; margin-bottom: 20px;">您已成功登記 胡志龍的十二夜 票券</h3>
     <div class="order-summary-list" id="success-details" style="background:#fdfdfd;"></div>
-    <p style="color: #d35400; font-weight: bold; margin-bottom: 20px;">建議您截圖此頁面，作為取票憑證留存。</p>
+    <p style="color: var(--secondary-blue); font-weight: bold; margin-bottom: 20px;">建議您截圖此頁面，作為取票憑證留存。</p>
     <p style="color: #666; font-size: 0.9em; margin-bottom: 30px;">如有訂購問題可來信至 <a href="mailto:chorphilia@gmail.com">chorphilia@gmail.com</a></p>
     <button class="submit-btn" onclick="location.reload()">返回票券登記頁面</button>
 </div>
@@ -193,13 +208,12 @@
         if(payMethod === "ATM轉帳") html += `<div class="order-item"><span>匯款後五碼</span><span>${bankId}</span></div>`;
         html += `<div class="order-item"><span>取票姓名</span><span>${pickupName}</span></div>`;
         
-        html += `<div style="margin-top:20px; border-top:2px solid #b38b5d; padding-top:10px;"><strong>訂購明細：</strong></div>`;
+        html += `<div style="margin-top:20px; border-top:2px solid var(--secondary-blue); padding-top:10px;"><strong>訂購明細：</strong></div>`;
         
         let lastVenue = "";
         qties.forEach((q) => {
             let n = parseInt(q.value) || 0;
             if(n > 0) {
-                // 尋找該 select 所屬的場次標題
                 let currentVenue = q.closest('tr').previousElementSibling;
                 while (currentVenue && !currentVenue.classList.contains('venue-name')) {
                     currentVenue = currentVenue.previousElementSibling;
@@ -213,7 +227,7 @@
                 html += `<div class="order-sub-item"><span>${q.getAttribute('data-label')}</span><span>${n} 張</span></div>`;
             }
         });
-        html += `<div class="order-item" style="font-weight:bold; color:#d35400; font-size:1.3em; margin-top:15px; border-top:1px solid #ddd;"><span>應付總額</span><span>$${finalAmt}</span></div>`;
+        html += `<div class="order-item" style="font-weight:bold; color:var(--secondary-blue); font-size:1.3em; margin-top:15px; border-top:1px solid #ddd;"><span>應付總額</span><span>$${finalAmt}</span></div>`;
         return html;
     }
 
