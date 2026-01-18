@@ -20,12 +20,19 @@
         h1 { text-align: center; color: var(--primary-blue); font-size: 1.8em; margin-bottom: 10px; margin-top: 20px; }
         h2 { background: var(--light-blue); padding: 12px; border-left: 6px solid var(--secondary-blue); font-size: 1.1em; margin-top: 30px; border-radius: 0 4px 4px 0; color: var(--primary-blue); }
         
-        .discount-tag { text-align: center; color: #0056b3; font-weight: bold; background: #e7f1ff; padding: 12px; border-radius: 8px; margin-bottom: 25px; border: 1px dashed var(--secondary-blue); }
-        
+        /* 購票優惠區塊 */
+        .discount-tag { text-align: center; color: #0056b3; background: #e7f1ff; padding: 15px; border-radius: 8px; margin-bottom: 25px; border: 1px dashed var(--secondary-blue); line-height: 1.5; }
+        .discount-title { font-weight: bold; display: block; margin-bottom: 5px; font-size: 1.1em; }
+        .discount-detail { font-size: 0.95em; }
+
         .form-group { margin-bottom: 18px; }
         label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-blue); }
+        .input-hint { font-size: 0.85em; color: #5a7184; margin-bottom: 8px; display: block; line-height: 1.4; }
+        .input-hint a { color: var(--secondary-blue); text-decoration: none; font-weight: bold; }
+        .input-hint a:hover { text-decoration: underline; }
+
         input[type="text"], input[type="email"], input[type="tel"], select, textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; font-size: 16px; background-color: white; transition: border-color 0.3s; }
-        input:focus, select:focus { border-color: var(--secondary-blue); outline: none; box-shadow: 0 0 0 3px rgba(52,152,219,0.1); }
+        input:focus, select:focus, textarea:focus { border-color: var(--secondary-blue); outline: none; box-shadow: 0 0 0 3px rgba(52,152,219,0.1); }
         
         table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #fff; }
         td { padding: 12px; border-bottom: 1px solid #edf2f7; }
@@ -34,18 +41,15 @@
         .free-entry-label { color: #718096; font-weight: normal; font-size: 0.95em; }
         .note-text { font-size: 0.85em; color: #4a5568; margin-top: 4px; display: block; line-height: 1.4; }
 
-        /* 總計區塊改為深藍漸層 */
         .summary-box { background: linear-gradient(135deg, #1a3a5a 0%, #2c3e50 100%); color: white; padding: 25px; border-radius: 12px; margin-top: 30px; }
         .summary-line { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 1.1em; }
         .total-amount { font-size: 1.6em; color: #ffd700; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; margin-top: 10px; font-weight: bold; }
         
         .bank-info { background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #bcd7f3; margin-top: 15px; }
         
-        /* 按鈕風格 */
         .submit-btn { width: 100%; padding: 18px; background: var(--secondary-blue); color: white; border: none; border-radius: 8px; font-size: 1.2em; cursor: pointer; margin-top: 25px; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); }
         .submit-btn:hover { background: var(--accent-blue); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4); }
         .secondary-btn { background: #e2e8f0; color: #4a5568; margin-top: 10px; font-size: 1em; padding: 10px; box-shadow: none; }
-        .secondary-btn:hover { background: #cbd5e0; transform: none; }
         
         #confirm-container, #success-message { display: none; }
         .order-summary-list { text-align: left; background: #fff; padding: 20px; border: 2px solid var(--light-blue); border-radius: 8px; margin: 20px 0; }
@@ -62,7 +66,8 @@
     <h1>胡志龍 2026 鋼琴獨奏會 - 胡志龍的十二夜</h1>
     
     <div class="discount-tag">
-        購票優惠：3張8折｜4張75折｜5張以上7折 (跨場次累計)
+        <span class="discount-title">購票優惠：3張8折｜4張75折｜5張以上7折</span>
+        <span class="discount-detail">填此表單登記，由主辦單位調票可享 跨場次累計張數優惠</span>
     </div>
 
     <form id="ticketForm" action="https://formspree.io/f/xeeeoknw" method="POST">
@@ -76,51 +81,29 @@
             <tbody>
                 <tr class="venue-name"><td colspan="2">一、巴赫 Bach 3/11 (三) 19:00 臺北和平基督長老教會</td></tr>
                 <tr><td colspan="2" class="free-entry-label">自由入場，不需購票</td></tr>
-
                 <tr class="venue-name"><td colspan="2">二、莫札特 Mozart 3/13 (五) 19:30 臺北國家演奏廳</td></tr>
                 <tr><td>票價一 $500</td><td style="text-align:right"><select name="0313_台北_500" class="qty" data-price="500" data-label="票價一 $500"></select></td></tr>
                 <tr><td>票價二 $800</td><td style="text-align:right"><select name="0313_台北_800" class="qty" data-price="800" data-label="票價二 $800"></select></td></tr>
                 <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0313_台北_1000" class="qty" data-price="1000" data-label="票價三 $1,000"></select></td></tr>
-
-                <tr class="venue-name"><td colspan="2">三、貝多芬 Beethoven 3/15 (日) 15:00 北港基督長老教會</td></tr>
-                <tr><td colspan="2" class="free-entry-label">自由入場，不需購票</td></tr>
-
                 <tr class="venue-name"><td colspan="2">四、舒伯特 Schubert 3/22 (日) 19:30 臺北國家演奏廳</td></tr>
                 <tr><td>票價一 $500</td><td style="text-align:right"><select name="0322_台北_500" class="qty" data-price="500" data-label="票價一 $500"></select></td></tr>
                 <tr><td>票價二 $800</td><td style="text-align:right"><select name="0322_台北_800" class="qty" data-price="800" data-label="票價二 $800"></select></td></tr>
                 <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0322_台北_1000" class="qty" data-price="1000" data-label="票價三 $1,000"></select></td></tr>
-
-                <tr class="venue-name"><td colspan="2">五、舒曼 Schumann 3/25 (三) 19:00 國立嘉義大學 文薈廳</td></tr>
-                <tr><td colspan="2" class="free-entry-label">自由入場，不需購票</td></tr>
-
                 <tr class="venue-name"><td colspan="2">六、蕭邦 Chopin 3/29 (日) 14:30 衛武營表演廳</td></tr>
                 <tr><td>票價一 $400</td><td style="text-align:right"><select name="0329午_衛武營_400" class="qty" data-price="400" data-label="票價一 $400"></select></td></tr>
                 <tr><td>票價二 $600</td><td style="text-align:right"><select name="0329午_衛武營_600" class="qty" data-price="600" data-label="票價二 $600"></select></td></tr>
                 <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0329午_衛武營_1000" class="qty" data-price="1000" data-label="票價三 $1,000"></select></td></tr>
-
                 <tr class="venue-name"><td colspan="2">七、李斯特 Liszt 3/29 (日) 19:30 衛武營表演廳</td></tr>
                 <tr><td>票價一 $400</td><td style="text-align:right"><select name="0329晚_衛武營_400" class="qty" data-price="400" data-label="票價一 $400"></select></td></tr>
                 <tr><td>票價二 $600</td><td style="text-align:right"><select name="0329晚_衛武營_600" class="qty" data-price="600" data-label="票價二 $600"></select></td></tr>
                 <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0329晚_衛武營_1000" class="qty" data-price="1000" data-label="票價三 $1,000"></select></td></tr>
-
-                <tr class="venue-name"><td colspan="2">八、布拉姆斯 Brahms 4/9 (四) 19:00 花蓮門諾醫院 薄柔纜禮拜堂</td></tr>
-                <tr><td colspan="2" class="free-entry-label">自由入場，不需購票</td></tr>
-
                 <tr class="venue-name"><td colspan="2">九、德布西 Debussy 4/11 (六) 15:00 宜蘭演藝廳</td></tr>
                 <tr><td>票價 $300</td><td style="text-align:right"><select name="0411_宜蘭_300" class="qty" data-price="300" data-label="票價 $300"></select></td></tr>
-
                 <tr class="venue-name"><td colspan="2">十、拉威爾 Ravel 4/12 (日) 14:30 臺中國家歌劇院小劇場</td></tr>
                 <tr><td>票價 $600</td><td style="text-align:right"><select name="0412午_台中_600" class="qty" data-price="600" data-label="票價 $600"></select></td></tr>
-
                 <tr class="venue-name"><td colspan="2">十一、拉赫瑪尼諾夫 Rachmaninoff 4/12 (日) 19:30 臺中國家歌劇院小劇場</td></tr>
                 <tr><td>票價 $600</td><td style="text-align:right"><select name="0412晚_台中_600" class="qty" data-price="600" data-label="票價 $600"></select></td></tr>
-
-                <tr class="venue-name">
-                    <td colspan="2">
-                        十二、蓋希文Gershwin 4/18 (六) 14:30 臺南成功大學 成杏廳
-                        <span class="note-text">共同演出 / 廖培鈞<br>本場次為國立成功大學國際傷口修復與再生中心主辦之慈善音樂會</span>
-                    </td>
-                </tr>
+                <tr class="venue-name"><td colspan="2">十二、蓋希文Gershwin 4/18 (六) 14:30 臺南成功大學 成杏廳</td></tr>
                 <tr><td>票價 $1,000</td><td style="text-align:right"><select name="0418_台南_1000" class="qty" data-price="1000" data-label="票價 $1,000"></select></td></tr>
             </tbody>
         </table>
@@ -139,7 +122,15 @@
         </div>
 
         <div class="form-group" style="margin-top:20px;"><label>取票者姓名</label><input type="text" name="取票者姓名" id="form_pickup"></div>
-        <div class="form-group"><label>備註</label><textarea name="備註" id="form_memo" rows="3"></textarea></div>
+        
+        <div class="form-group">
+            <label>備註</label>
+            <span class="input-hint">
+                如有座位需求可在此填寫。<br>
+                各場次座位資訊可參考：<a href="https://reurl.cc/3blOmO" target="_blank">座位圖連結</a>
+            </span>
+            <textarea name="備註" id="form_memo" rows="3" placeholder="例如：希望能靠走道、或是特定排數需求..."></textarea>
+        </div>
 
         <div class="summary-box">
             <div class="summary-line"><span>售票場次總票數：</span><span><span id="dispQty">0</span></span></div>
@@ -170,6 +161,7 @@
 <div class="footer">主辦：斐亞文化藝術股份有限公司 | 02-27711270</div>
 
 <script>
+    // JS 邏輯保持不變...
     const qties = document.querySelectorAll('.qty');
     qties.forEach(select => {
         for (let i = 0; i <= 20; i++) {
@@ -201,12 +193,14 @@
         let payMethod = document.querySelector('input[name="付款方式"]:checked').value;
         let finalAmt = document.getElementById('dispFinal').innerText, bankId = document.getElementById('form_bank_id').value;
         let pickupName = document.getElementById('form_pickup').value || name;
+        let memo = document.getElementById('form_memo').value;
 
         let html = `<div class="order-item"><span>訂購姓名</span><span>${name}</span></div>`;
         html += `<div class="order-item"><span>聯絡電話</span><span>${tel}</span></div>`;
         html += `<div class="order-item"><span>付款方式</span><span>${payMethod}</span></div>`;
         if(payMethod === "ATM轉帳") html += `<div class="order-item"><span>匯款後五碼</span><span>${bankId}</span></div>`;
         html += `<div class="order-item"><span>取票姓名</span><span>${pickupName}</span></div>`;
+        if(memo) html += `<div class="order-item"><span>備註</span><span>${memo}</span></div>`;
         
         html += `<div style="margin-top:20px; border-top:2px solid var(--secondary-blue); padding-top:10px;"><strong>訂購明細：</strong></div>`;
         
