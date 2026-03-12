@@ -1,272 +1,283 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>胡志龍的十二夜 - 票券預訂</title>
-    <style>
-        /* 藍色系風格定義 */
-        :root {
-            --primary-blue: #1a3a5a;    /* 深藍色：標題、重要區塊 */
-            --secondary-blue: #3498db;  /* 亮藍色：邊框、按鈕 */
-            --light-blue: #eef6fc;      /* 極淺藍：背景、標題列 */
-            --accent-blue: #2980b9;     /* 中藍色：懸停效果 */
-            --text-color: #2c3e50;      /* 深藍灰：文字 */
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>胡志龍的十二夜 - 票券預訂</title>
 
-        body { font-family: "Microsoft JhengHei", sans-serif; background-color: #f0f4f8; padding: 20px; color: var(--text-color); line-height: 1.6; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(26,58,90,0.1); }
-        
-        h1 { text-align: center; color: var(--primary-blue); font-size: 1.8em; margin-bottom: 10px; margin-top: 20px; }
-        h2 { background: var(--light-blue); padding: 12px; border-left: 6px solid var(--secondary-blue); font-size: 1.1em; margin-top: 30px; border-radius: 0 4px 4px 0; color: var(--primary-blue); }
-        
-        /* 購票優惠區塊 */
-        .discount-tag { text-align: center; color: #0056b3; background: #e7f1ff; padding: 15px; border-radius: 8px; margin-bottom: 25px; border: 1px dashed var(--secondary-blue); line-height: 1.5; }
-        .discount-title { font-weight: bold; display: block; margin-bottom: 5px; font-size: 1.1em; }
-        .discount-detail { font-size: 0.95em; }
+<style>
+:root{
+--primary-blue:#1a3a5a;
+--secondary-blue:#3498db;
+--light-blue:#eef6fc;
+--accent-blue:#2980b9;
+--text-color:#2c3e50;
+}
 
-        .form-group { margin-bottom: 18px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--primary-blue); }
-        .input-hint { font-size: 0.85em; color: #5a7184; margin-bottom: 8px; display: block; line-height: 1.4; }
-        .input-hint a { color: var(--secondary-blue); text-decoration: none; font-weight: bold; }
-        .input-hint a:hover { text-decoration: underline; }
+body{
+font-family:"Microsoft JhengHei",sans-serif;
+background:#f0f4f8;
+padding:20px;
+color:var(--text-color);
+line-height:1.6;
+}
 
-        input[type="text"], input[type="email"], input[type="tel"], select, textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; font-size: 16px; background-color: white; transition: border-color 0.3s; }
-        input:focus, select:focus, textarea:focus { border-color: var(--secondary-blue); outline: none; box-shadow: 0 0 0 3px rgba(52,152,219,0.1); }
-        
-        table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #fff; }
-        td { padding: 12px; border-bottom: 1px solid #edf2f7; }
-        
-        .venue-name { font-weight: bold; color: var(--primary-blue); background: #f8fafc; border-top: 2px solid #e2e8f0; }
-        .free-entry-label { color: #718096; font-weight: normal; font-size: 0.95em; }
-        .note-text { font-size: 0.85em; color: #4a5568; margin-top: 4px; display: block; line-height: 1.4; font-weight: normal; }
+.container{
+max-width:800px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(26,58,90,0.1);
+}
 
-        .summary-box { background: linear-gradient(135deg, #1a3a5a 0%, #2c3e50 100%); color: white; padding: 25px; border-radius: 12px; margin-top: 30px; }
-        .summary-line { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 1.1em; }
-        .total-amount { font-size: 1.6em; color: #ffd700; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; margin-top: 10px; font-weight: bold; }
-        
-        .bank-info { background: #f0f7ff; padding: 20px; border-radius: 8px; border: 1px solid #bcd7f3; margin-top: 15px; }
-        
-        .submit-btn { width: 100%; padding: 18px; background: var(--secondary-blue); color: white; border: none; border-radius: 8px; font-size: 1.2em; cursor: pointer; margin-top: 25px; font-weight: bold; transition: all 0.3s; box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); }
-        .submit-btn:hover { background: var(--accent-blue); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4); }
-        .secondary-btn { background: #e2e8f0; color: #4a5568; margin-top: 10px; font-size: 1em; padding: 10px; box-shadow: none; }
-        
-        #confirm-container, #success-message { display: none; }
-        .order-summary-list { text-align: left; background: #fff; padding: 20px; border: 2px solid var(--light-blue); border-radius: 8px; margin: 20px 0; }
-        .order-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f7fafc; align-items: flex-start; }
-        .order-venue-title { font-weight: bold; color: var(--primary-blue); margin-top: 15px; display: block; border-left: 3px solid var(--secondary-blue); padding-left: 8px; }
-        .order-sub-item { display: flex; justify-content: space-between; padding: 4px 0 4px 15px; font-size: 0.95em; color: #4a5568; }
+h1{
+text-align:center;
+color:var(--primary-blue);
+font-size:1.8em;
+margin-bottom:10px;
+margin-top:20px;
+}
 
-        .footer { text-align: center; margin-top: 40px; font-size: 0.9em; color: #718096; line-height: 1.8; border-top: 1px solid #e2e8f0; padding-top: 20px; }
-    </style>
+h2{
+background:var(--light-blue);
+padding:12px;
+border-left:6px solid var(--secondary-blue);
+font-size:1.1em;
+margin-top:30px;
+border-radius:0 4px 4px 0;
+color:var(--primary-blue);
+}
+
+.discount-tag{
+text-align:center;
+color:#0056b3;
+background:#e7f1ff;
+padding:15px;
+border-radius:8px;
+margin-bottom:25px;
+border:1px dashed var(--secondary-blue);
+}
+
+.discount-title{
+font-weight:bold;
+display:block;
+margin-bottom:5px;
+font-size:1.1em;
+}
+
+.form-group{margin-bottom:18px;}
+
+label{
+display:block;
+margin-bottom:5px;
+font-weight:bold;
+color:var(--primary-blue);
+}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+border:1px solid #cbd5e0;
+border-radius:6px;
+box-sizing:border-box;
+font-size:16px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin:15px 0;
+}
+
+td{
+padding:12px;
+border-bottom:1px solid #edf2f7;
+}
+
+.venue-name{
+font-weight:bold;
+color:var(--primary-blue);
+background:#f8fafc;
+border-top:2px solid #e2e8f0;
+}
+
+.summary-box{
+background:linear-gradient(135deg,#1a3a5a 0%,#2c3e50 100%);
+color:white;
+padding:25px;
+border-radius:12px;
+margin-top:30px;
+}
+
+.summary-line{
+display:flex;
+justify-content:space-between;
+margin-bottom:8px;
+font-size:1.1em;
+}
+
+.total-amount{
+font-size:1.6em;
+color:#ffd700;
+border-top:1px solid rgba(255,255,255,0.2);
+padding-top:15px;
+margin-top:10px;
+font-weight:bold;
+}
+
+.submit-btn{
+width:100%;
+padding:18px;
+background:var(--secondary-blue);
+color:white;
+border:none;
+border-radius:8px;
+font-size:1.2em;
+cursor:pointer;
+margin-top:25px;
+font-weight:bold;
+}
+
+.footer{
+text-align:center;
+margin-top:40px;
+font-size:0.9em;
+color:#718096;
+line-height:1.8;
+border-top:1px solid #e2e8f0;
+padding-top:20px;
+}
+</style>
 </head>
+
 <body>
 
-<div class="container" id="form-container">
-    <h1>胡志龍 2026 鋼琴獨奏會 - 胡志龍的十二夜</h1>
-    
-    <div class="discount-tag">
-        <span class="discount-title">購票優惠：3張8折｜4張75折｜5張以上7折</span>
-        <span class="discount-detail">填此表單登記由主辦單位調票，可享『跨場次累計張數優惠』</span>
-    </div>
+<div class="container">
 
-    <form id="ticketForm" action="https://formspree.io/f/xeeeoknw" method="POST">
-        <h2>購票者資訊</h2>
-        <div class="form-group"><label>購票者姓名 *</label><input type="text" name="購票者姓名" id="form_name" required></div>
-        <div class="form-group"><label>電子信箱 Email *</label><input type="email" name="Email" id="form_email" required></div>
-        <div class="form-group"><label>聯絡電話 * (10碼數字)</label><input type="tel" name="聯絡電話" id="form_tel" required pattern="[0-9]{10}"></div>
+<h1>胡志龍 2026 鋼琴獨奏會 - 胡志龍的十二夜</h1>
 
-        <h2>選擇訂購場次與張數</h2>
-        <table>
-            <tbody>
-                <tr class="venue-name"><td colspan="2">一、巴赫 Bach 3/11 (三) 19:00 臺北和平基督長老教會</td></tr>
-                <tr><td colspan="2" class="free-entry-label">自由入場，不需購票</td></tr>
-                
-                <tr class="venue-name"><td colspan="2">二、莫札特 Mozart 3/13 (五) 19:30 臺北國家演奏廳</td></tr>
-                <tr><td>票價一 $500</td><td style="text-align:right"><select name="0313_台北_500" class="qty" data-price="500" data-label="票價一 $500"></select></td></tr>
-                <tr><td>票價二 $800</td><td style="text-align:right"><select name="0313_台北_800" class="qty" data-price="800" data-label="票價二 $800"></select></td></tr>
-                <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0313_台北_1000" class="qty" data-price="1000" data-label="票價三 $1,000"></select></td></tr>
-
-                <tr class="venue-name"><td colspan="2">四、舒伯特 Schubert 3/22 (日) 19:30 臺北國家演奏廳</td></tr>
-                <tr><td>票價一 $500</td><td style="text-align:right"><select name="0322_台北_500" class="qty" data-price="500" data-label="票價一 $500"></select></td></tr>
-                <tr><td>票價二 $800</td><td style="text-align:right"><select name="0322_台北_800" class="qty" data-price="800" data-label="票價二 $800"></select></td></tr>
-                <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0322_台北_1000" class="qty" data-price="1000" data-label="票價三 $1,000"></select></td></tr>
-
-                <tr class="venue-name"><td colspan="2">六、蕭邦 Chopin 3/29 (日) 14:30 衛武營表演廳</td></tr>
-                <tr><td>票價一 $400</td><td style="text-align:right"><select name="0329午_衛武營_400" class="qty" data-price="400" data-label="票價一 $400"></select></td></tr>
-                <tr><td>票價二 $600</td><td style="text-align:right"><select name="0329午_衛武營_600" class="qty" data-price="600" data-label="票價二 $600"></select></td></tr>
-                <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0329午_衛武營_1000" class="qty" data-price="1000" data-label="票價三 $1,000"></select></td></tr>
-
-                <tr class="venue-name"><td colspan="2">七、李斯特 Liszt 3/29 (日) 19:30 衛武營表演廳</td></tr>
-                <tr><td>票價一 $400</td><td style="text-align:right"><select name="0329晚_衛武營_400" class="qty" data-price="400" data-label="票價一 $400"></select></td></tr>
-                <tr><td>票價二 $600</td><td style="text-align:right"><select name="0329晚_衛武營_600" class="qty" data-price="600" data-label="票價二 $600"></select></td></tr>
-                <tr><td>票價三 $1,000</td><td style="text-align:right"><select name="0329晚_衛武營_1000" class="qty" data-price="1000" data-label="票價三 $1,000"></select></td></tr>
-
-                <tr class="venue-name"><td colspan="2">九、德布西 Debussy 4/11 (六) 15:00 宜蘭演藝廳</td></tr>
-                <tr><td>票價 $300</td><td style="text-align:right"><select name="0411_宜蘭_300" class="qty" data-price="300" data-label="票價 $300"></select></td></tr>
-
-                <tr class="venue-name"><td colspan="2">十、拉威爾 Ravel 4/12 (日) 14:30 臺中國家歌劇院小劇場</td></tr>
-                <tr><td>票價 $600</td><td style="text-align:right"><select name="0412午_台中_600" class="qty" data-price="600" data-label="票價 $600"></select></td></tr>
-
-                <tr class="venue-name"><td colspan="2">十一、拉赫瑪尼諾夫 Rachmaninoff 4/12 (日) 19:30 臺中國家歌劇院小劇場</td></tr>
-                <tr><td>票價 $600</td><td style="text-align:right"><select name="0412晚_台中_600" class="qty" data-price="600" data-label="票價 $600"></select></td></tr>
-
-                <tr class="venue-name">
-                    <td colspan="2">
-                        十二、蓋希文Gershwin 4/18 (六) 14:30 臺南成功大學 成杏廳
-                        <span class="note-text">
-                            （共同演出 / 廖培鈞）<br>
-                            本場次為國立成功大學國際傷口修復與再生中心主辦之慈善音樂會
-                        </span>
-                    </td>
-                </tr>
-                <tr><td>票價 $1,000</td><td style="text-align:right"><select name="0418_台南_1000" class="qty" data-price="1000" data-label="票價 $1,000"></select></td></tr>
-            </tbody>
-        </table>
-
-        <h2>付款與取票</h2>
-        <div class="form-group">
-            <label>選擇付款方式</label>
-            <input type="radio" name="付款方式" value="ATM轉帳" id="pay1" checked onclick="toggleBank(true)"> <label style="display:inline; font-weight:normal;" for="pay1">1. ATM 轉帳，現場取票</label><br>
-            <input type="radio" name="付款方式" value="現場付款" id="pay2" onclick="toggleBank(false)"> <label style="display:inline; font-weight:normal;" for="pay2">2. 現場付款取票</label>
-        </div>
-
-        <div id="bankSection" class="bank-info">
-            <strong>匯款資訊：</strong><br>上海商銀（011）忠孝分行 帳號：201-0200-0028100 戶名：斐亞文化藝術股份有限公司<br><br>
-            <label>提供付款後五碼 (選擇轉帳者必填)</label>
-            <input type="text" name="匯款後五碼" id="form_bank_id" maxlength="5">
-        </div>
-
-        <div class="form-group" style="margin-top:20px;"><label>取票者姓名</label><input type="text" name="取票者姓名" id="form_pickup"></div>
-        
-        <div class="form-group">
-            <label>備註</label>
-            <span class="input-hint">
-                如有座位需求可在此填寫，實際座位將由主辦單位依各場次售出狀況安排<br>
-                各場次座位資訊可參考：<a href="https://reurl.cc/3blOmO" target="_blank">座位圖參考</a>
-            </span>
-            <textarea name="備註" id="form_memo" rows="3" placeholder="如：場次日期＿第八排中間"></textarea>
-        </div>
-
-        <div class="summary-box">
-            <div class="summary-line"><span>售票場次總票數：</span><span><span id="dispQty">0</span></span></div>
-            <div class="summary-line"><span>原始總額：</span><span>$<span id="dispOrig">0</span></span></div>
-            <div class="summary-line total-amount"><span>應付總額 (已計折扣)：</span><span>$<span id="dispFinal">0</span></span></div>
-        </div>
-        <input type="hidden" name="[統計] 總票數" id="hideQty">
-        <input type="hidden" name="[統計] 應付總金額" id="hideFinal">
-        <button type="button" class="submit-btn" onclick="showConfirm()">進入訂單確認頁面</button>
-    </form>
+<div class="discount-tag">
+<span class="discount-title">購票優惠：3張8折｜4張75折｜5張以上7折</span>
+<span>填此表單登記由主辦單位調票，可享『跨場次累計張數優惠』</span>
 </div>
 
-<div class="container" id="confirm-container">
-    <h2 style="text-align:center; border:none; background:none; font-size:1.5em; color:var(--secondary-blue);">請最後確認您的訂購資訊</h2>
-    <div class="order-summary-list" id="confirm-details"></div>
-    <button type="button" class="submit-btn" id="finalSubmitBtn" onclick="finalSubmit()">確認無誤，正式送出</button>
-    <button type="button" class="submit-btn secondary-btn" onclick="backToEdit()">回上一步修改</button>
+<form id="ticketForm">
+
+<h2>購票者資訊</h2>
+
+<div class="form-group">
+<label>購票者姓名 *</label>
+<input type="text" required>
 </div>
 
-<div class="container" id="success-message" style="text-align: center;">
-    <h3 style="color: var(--primary-blue); font-size: 1.5em; margin-bottom: 20px;">您已成功登記 胡志龍的十二夜 票券</h3>
-    <div class="order-summary-list" id="success-details" style="background:#fdfdfd;"></div>
-    <p style="color: var(--secondary-blue); font-weight: bold; margin-bottom: 20px;">建議您截圖此頁面，作為取票憑證留存。</p>
-    <p style="color: #666; font-size: 0.9em; margin-bottom: 30px;">如有訂購問題可來信至 <a href="mailto:chorphilia@gmail.com">chorphilia@gmail.com</a></p>
-    <button class="submit-btn" onclick="location.reload()">返回票券登記頁面</button>
+<div class="form-group">
+<label>Email *</label>
+<input type="email" required>
 </div>
 
-<div class="footer">主辦：斐亞文化藝術股份有限公司 | 02-27711270</div>
+<div class="form-group">
+<label>聯絡電話 *</label>
+<input type="tel" required>
+</div>
+
+<h2>選擇訂購場次與張數</h2>
+
+<table>
+
+<tr class="venue-name"><td colspan="2">3/13 莫札特 台北</td></tr>
+<tr><td>$500</td><td><select class="qty" data-price="500"></select></td></tr>
+<tr><td>$800</td><td><select class="qty" data-price="800"></select></td></tr>
+<tr><td>$1,200</td><td><select class="qty" data-price="1200"></select></td></tr>
+
+<tr class="venue-name"><td colspan="2">3/22 舒伯特 台北</td></tr>
+<tr><td>$500</td><td><select class="qty" data-price="500"></select></td></tr>
+<tr><td>$800</td><td><select class="qty" data-price="800"></select></td></tr>
+<tr><td>$1,200</td><td><select class="qty" data-price="1200"></select></td></tr>
+
+<tr class="venue-name"><td colspan="2">3/29 蕭邦 衛武營</td></tr>
+<tr><td>$400</td><td><select class="qty" data-price="400"></select></td></tr>
+<tr><td>$600</td><td><select class="qty" data-price="600"></select></td></tr>
+<tr><td>$1,200</td><td><select class="qty" data-price="1200"></select></td></tr>
+
+<tr class="venue-name"><td colspan="2">3/29 李斯特 衛武營</td></tr>
+<tr><td>$400</td><td><select class="qty" data-price="400"></select></td></tr>
+<tr><td>$600</td><td><select class="qty" data-price="600"></select></td></tr>
+<tr><td>$1,200</td><td><select class="qty" data-price="1200"></select></td></tr>
+
+<tr class="venue-name"><td colspan="2">4/18 Gershwin 台南</td></tr>
+<tr><td>$1,200</td><td><select class="qty" data-price="1200"></select></td></tr>
+
+</table>
+
+<div class="summary-box">
+<div class="summary-line">
+<span>總票數</span>
+<span id="qty">0</span>
+</div>
+
+<div class="summary-line">
+<span>原始金額</span>
+<span id="orig">0</span>
+</div>
+
+<div class="summary-line total-amount">
+<span>折扣後</span>
+<span id="final">0</span>
+</div>
+</div>
+
+<button class="submit-btn">送出訂單</button>
+
+</form>
+</div>
+
+<div class="footer">
+斐亞文化藝術股份有限公司
+</div>
 
 <script>
-    const qties = document.querySelectorAll('.qty');
-    qties.forEach(select => {
-        for (let i = 0; i <= 20; i++) {
-            let opt = document.createElement('option'); opt.value = i; opt.innerHTML = i; select.appendChild(opt);
-        }
-    });
 
-    function calc() {
-        let totalQty = 0, originalPrice = 0;
-        qties.forEach((q) => {
-            let n = parseInt(q.value) || 0, p = parseInt(q.getAttribute('data-price'));
-            totalQty += n; originalPrice += (n * p);
-        });
-        let rate = 1;
-        if (totalQty >= 5) rate = 0.7; else if (totalQty === 4) rate = 0.75; else if (totalQty === 3) rate = 0.8;
-        let final = Math.round(originalPrice * rate);
-        document.getElementById('dispQty').innerText = totalQty;
-        document.getElementById('dispOrig').innerText = originalPrice.toLocaleString();
-        document.getElementById('dispFinal').innerText = final.toLocaleString();
-        document.getElementById('hideQty').value = totalQty;
-        document.getElementById('hideFinal').value = "$" + final.toLocaleString();
-    }
-    qties.forEach(el => el.addEventListener('change', calc));
+const selects=document.querySelectorAll('.qty');
 
-    function toggleBank(show) { document.getElementById('bankSection').style.display = show ? 'block' : 'none'; }
+selects.forEach(s=>{
+for(let i=0;i<=20;i++){
+let o=document.createElement('option');
+o.value=i;
+o.text=i;
+s.appendChild(o);
+}
+});
 
-    function generateOrderHtml() {
-        let name = document.getElementById('form_name').value, tel = document.getElementById('form_tel').value;
-        let payMethod = document.querySelector('input[name="付款方式"]:checked').value;
-        let finalAmt = document.getElementById('dispFinal').innerText, bankId = document.getElementById('form_bank_id').value;
-        let pickupName = document.getElementById('form_pickup').value || name;
-        let memo = document.getElementById('form_memo').value;
+function calc(){
 
-        let html = `<div class="order-item"><span>訂購姓名</span><span>${name}</span></div>`;
-        html += `<div class="order-item"><span>聯絡電話</span><span>${tel}</span></div>`;
-        html += `<div class="order-item"><span>付款方式</span><span>${payMethod}</span></div>`;
-        if(payMethod === "ATM轉帳") html += `<div class="order-item"><span>匯款後五碼</span><span>${bankId}</span></div>`;
-        html += `<div class="order-item"><span>取票姓名</span><span>${pickupName}</span></div>`;
-        if(memo) html += `<div class="order-item"><span>備註</span><span>${memo}</span></div>`;
-        
-        html += `<div style="margin-top:20px; border-top:2px solid var(--secondary-blue); padding-top:10px;"><strong>訂購明細：</strong></div>`;
-        
-        let lastVenue = "";
-        qties.forEach((q) => {
-            let n = parseInt(q.value) || 0;
-            if(n > 0) {
-                let currentVenue = q.closest('tr').previousElementSibling;
-                while (currentVenue && !currentVenue.classList.contains('venue-name')) {
-                    currentVenue = currentVenue.previousElementSibling;
-                }
-                let venueTitle = currentVenue ? currentVenue.innerText.split('\n')[0] : "音樂會場次";
-                
-                if(venueTitle !== lastVenue) {
-                    html += `<span class="order-venue-title">${venueTitle}</span>`;
-                    lastVenue = venueTitle;
-                }
-                html += `<div class="order-sub-item"><span>${q.getAttribute('data-label')}</span><span>${n} 張</span></div>`;
-            }
-        });
-        html += `<div class="order-item" style="font-weight:bold; color:var(--secondary-blue); font-size:1.3em; margin-top:15px; border-top:1px solid #ddd;"><span>應付總額</span><span>$${finalAmt}</span></div>`;
-        return html;
-    }
+let qty=0;
+let orig=0;
 
-    function showConfirm() {
-        if(!document.getElementById('form_name').value || !document.getElementById('form_tel').value) { alert("請填寫姓名與電話！"); return; }
-        if(parseInt(document.getElementById('dispQty').innerText) === 0) { alert("請選擇場次！"); return; }
-        document.getElementById('confirm-details').innerHTML = generateOrderHtml();
-        document.getElementById('form-container').style.display = 'none';
-        document.getElementById('confirm-container').style.display = 'block';
-        window.scrollTo(0, 0);
-    }
+selects.forEach(s=>{
+let n=parseInt(s.value)||0;
+let p=parseInt(s.dataset.price);
+qty+=n;
+orig+=n*p;
+});
 
-    function backToEdit() {
-        document.getElementById('form-container').style.display = 'block';
-        document.getElementById('confirm-container').style.display = 'none';
-    }
+let rate=1;
 
-    function finalSubmit() {
-        const form = document.getElementById('ticketForm'), btn = document.getElementById('finalSubmitBtn');
-        btn.innerText = '處理中...'; btn.disabled = true;
-        fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' }
-        }).then(response => {
-            if (response.ok) {
-                document.getElementById('success-details').innerHTML = generateOrderHtml();
-                document.getElementById('confirm-container').style.display = 'none';
-                document.getElementById('success-message').style.display = 'block';
-                window.scrollTo(0, 0);
-            } else { alert('提交失敗，請檢查網路。'); btn.innerText = '確認並送出'; btn.disabled = false; }
-        });
-    }
+if(qty>=5)rate=0.7;
+else if(qty==4)rate=0.75;
+else if(qty==3)rate=0.8;
+
+let final=Math.round(orig*rate);
+
+document.getElementById('qty').innerText=qty;
+document.getElementById('orig').innerText=orig;
+document.getElementById('final').innerText=final;
+
+}
+
+selects.forEach(s=>s.addEventListener('change',calc));
+
 </script>
+
 </body>
 </html>
